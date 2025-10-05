@@ -40,5 +40,13 @@ class MarkAsCompleted(APIView):
         except Task.DoesNotExist:
               return Response({"error": "Task not found."}, status=status.HTTP_404_NOT_FOUND)
         
+class AddCategorylist(CreateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Task.objects.all()
+    serializer_class = CategorySerializer
     
+class AllCategorylist(ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Task.objects.all()
+    serializer_class = CategorySerializer
     
